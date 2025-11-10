@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="ops4j.pax.logging.log4j2" type="repository">
+    <properties maven-id="org.ops4j.pax.logging:pax-logging-log4j2:1.11.2" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/logging/pax-logging-log4j2/1.11.2/pax-logging-log4j2-1.11.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/knopflerfish/kf6/log-API/5.0.0/log-API-5.0.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/logging/pax-logging-api/1.11.2/pax-logging-api-1.11.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/osgi/osgi.core/6.0.0/osgi.core-6.0.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/osgi/osgi.cmpn/6.0.0/osgi.cmpn-6.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
