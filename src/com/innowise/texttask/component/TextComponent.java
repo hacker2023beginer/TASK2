@@ -1,4 +1,4 @@
-package com.innnowise.texttask.component;
+package com.innowise.texttask.component;
 
 public abstract class TextComponent {
     protected TypeTextComponent type;

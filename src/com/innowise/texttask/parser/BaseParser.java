@@ -1,6 +1,6 @@
-package com.innnowise.texttask.parser;
+package com.innowise.texttask.parser;
 
-import com.innnowise.texttask.component.TextComposite;
+import com.innowise.texttask.component.TextComposite;
 
 public abstract class BaseParser {
     protected BaseParser nextParser;

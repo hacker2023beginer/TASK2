@@ -1,4 +1,4 @@
-package com.innnowise.texttask.exception;
+package com.innowise.texttask.exception;
 
 public class CustomTextException extends Exception{
     public CustomTextException(){

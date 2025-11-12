@@ -1,12 +1,12 @@
-package com.innnowise.texttask.parser;
+package com.innowise.texttask.parser;
 
-import com.innnowise.texttask.component.TextComposite;
-import com.innnowise.texttask.component.TypeTextComponent;
+import com.innowise.texttask.component.TextComposite;
+import com.innowise.texttask.component.TypeTextComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LexemeParser extends BaseParser {
-    private static final Logger logger = LogManager.getLogger(LexemeParser.class);
+    private static final Logger logger = LogManager.getLogger();
     private static final String LEXEME_DELIMITER = "\\s+";
 
     public LexemeParser(BaseParser nextParser) {
@@ -24,8 +24,8 @@ public class LexemeParser extends BaseParser {
             TextComposite lexemeComposite = new TextComposite(TypeTextComponent.LEXEME);
             parentComposite.addTextComponent(lexemeComposite);
             logger.info("Lexeme composite created and added to parent");
-            nextParser.parseComposite(lexeme, lexemeComposite);
             logger.info("Delegated lexeme '{}' to next parser", lexeme);
+            nextParser.parseComposite(lexeme, lexemeComposite);
         }
         logger.info("Finished lexeme parsing for text");
     }
