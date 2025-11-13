@@ -3,16 +3,25 @@ package com.innowise.texttask.component;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class TextLeaf extends TextComponent{
+public class TextLeaf extends AbstractTextComponent {
     private static final Logger logger = LogManager.getLogger();
-    private char symbol;
+    private String text;
 
-    public TextLeaf(char symbol) {
-        logger.debug("Initializing TextLeaf with symbol: {}", String.valueOf(symbol));
-        this.symbol = symbol;
+    public TextLeaf(String text) {
+        logger.debug("Initializing TextLeaf with symbol: {}", text);
+        this.text = text;
     }
+
+    public TextLeaf(String text, TypeTextComponent type) {
+        logger.debug("Creating TextLeaf. Type: {}, Text: '{}', Text length: {}",
+                type, text, text.length());
+
+        this.text = text;
+        this.setTypeComponent(type);
+    }
+
     @Override
     public String toString() {
-        return String.valueOf(symbol);
+        return text;
     }
 }

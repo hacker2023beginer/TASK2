@@ -1,6 +1,6 @@
 package com.innowise.texttask.component;
 
-public abstract class TextComponent {
+public abstract class AbstractTextComponent {
     protected TypeTextComponent type;
 
     public TypeTextComponent getTypeComponent() {
