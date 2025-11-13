@@ -8,11 +8,9 @@ import com.innowise.texttask.reader.TextFileReader;
 import com.innowise.texttask.reader.impl.TextFileReaderImpl;
 import com.innowise.texttask.service.MaxSentencesWithEqualWordsService;
 import com.innowise.texttask.service.SentenceSortByLexemeCountService;
-import com.innowise.texttask.service.SentenceWithEqualWordService;
 import com.innowise.texttask.service.SwapFirstLastLexemeService;
 import com.innowise.texttask.service.impl.TextMaxSentencesWithEqualWordsService;
 import com.innowise.texttask.service.impl.TextSentenceSortByLexemeCountService;
-import com.innowise.texttask.service.impl.TextSentenceWithEqualWordService;
 import com.innowise.texttask.service.impl.TextSwapFirstLastLexemeService;
 
 import java.nio.file.Path;
@@ -56,13 +54,7 @@ public class Main {
             System.out.println("   Result: " + maxSentences + " sentences contain the same word");
             System.out.println();
 
-            System.out.println("2. Finding number of sentences with equal words:");
-            SentenceWithEqualWordService equalWordService = new TextSentenceWithEqualWordService();
-            int sentencesWithEqualWords = equalWordService.findNumOfSentencesWithEqualWord(textComposite);
-            System.out.println("   Result: " + sentencesWithEqualWords + " sentences have at least one common word");
-            System.out.println();
-
-            System.out.println("3. Sorting sentences by lexeme count (ascending):");
+            System.out.println("2. Sorting sentences by lexeme count (ascending):");
             SentenceSortByLexemeCountService sortService = new TextSentenceSortByLexemeCountService();
             List<TextComposite> sortedSentences = sortService.sortSentencesByLexemeCount(textComposite);
             System.out.println("   Total sentences: " + sortedSentences.size());
@@ -74,7 +66,7 @@ public class Main {
             }
             System.out.println();
 
-            System.out.println("4. Swapping first and last lexemes in each sentence:");
+            System.out.println("3. Swapping first and last lexemes in each sentence:");
             SwapFirstLastLexemeService swapService = new TextSwapFirstLastLexemeService();
             TextComposite swappedText = swapService.swapFirstLastLexemeInSentences(textComposite);
             System.out.println("   Modified text:");
