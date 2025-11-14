@@ -22,7 +22,7 @@ public class SentenceParser extends BaseParser {
         for (String sentence : sentences) {
             logger.debug("Processing sentence: '{}'", sentence);
             TextComposite sentenceComposite = new TextComposite(TypeTextComponent.SENTENCE);
-            parentComposite.addTextComponent(sentenceComposite);
+            parentComposite.add(sentenceComposite);
             logger.info("Sentence composite created and added to parent");
             logger.info("Delegated sentence '{}' to next parser", sentence);
             nextParser.parseComposite(sentence, sentenceComposite);

@@ -22,7 +22,7 @@ public class LexemeParser extends BaseParser {
         for (String lexeme : lexemes) {
             logger.debug("Processing lexeme: '{}'", lexeme);
             TextComposite lexemeComposite = new TextComposite(TypeTextComponent.LEXEME);
-            parentComposite.addTextComponent(lexemeComposite);
+            parentComposite.add(lexemeComposite);
             logger.info("Lexeme composite created and added to parent");
             logger.info("Delegated lexeme '{}' to next parser", lexeme);
             nextParser.parseComposite(lexeme, lexemeComposite);

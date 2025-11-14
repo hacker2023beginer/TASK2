@@ -71,7 +71,7 @@ class TextMaxSentencesWithEqualWordsServiceTest {
     private TextComposite createTextWithSentences(TextComposite... sentences) {
         TextComposite text = new TextComposite(TypeTextComponent.PARAGRAPH);
         for (TextComposite sentence : sentences) {
-            text.addTextComponent(sentence);
+            text.add(sentence);
         }
         return text;
     }
@@ -83,8 +83,8 @@ class TextMaxSentencesWithEqualWordsServiceTest {
         for (String word : words) {
             TextComposite lexeme = new TextComposite(TypeTextComponent.LEXEME);
             TextComposite wordComposite = createWord(word);
-            lexeme.addTextComponent(wordComposite);
-            sentence.addTextComponent(lexeme);
+            lexeme.add(wordComposite);
+            sentence.add(lexeme);
         }
         
         return sentence;
@@ -94,7 +94,7 @@ class TextMaxSentencesWithEqualWordsServiceTest {
         TextComposite wordComposite = new TextComposite(TypeTextComponent.WORD);
         for (char c : word.toCharArray()) {
             TextLeaf symbol = new TextLeaf(String.valueOf(c), TypeTextComponent.SYMBOL);
-            wordComposite.addTextComponent(symbol);
+            wordComposite.add(symbol);
         }
         return wordComposite;
     }

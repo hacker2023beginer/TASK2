@@ -15,12 +15,12 @@ public class TextComposite extends AbstractTextComponent {
         this.type = type;
     }
 
-    public ArrayList<AbstractTextComponent> getTextComponent() {
+    public ArrayList<AbstractTextComponent> getChildren() {
         ArrayList<AbstractTextComponent> copyArrayOfAbstractTextComponent = new ArrayList<>(abstractTextComponent);
         return copyArrayOfAbstractTextComponent;
     }
 
-    public void addTextComponent(AbstractTextComponent abstractTextComponent){
+    public void add(AbstractTextComponent abstractTextComponent){
         logger.debug("Add TextComponent with type {}", abstractTextComponent.getTypeComponent());
         this.abstractTextComponent.add(abstractTextComponent);
     }

@@ -22,7 +22,7 @@ public class ParagraphParser extends BaseParser{
         for (String paragraph : paragraphs) {
             logger.debug("Processing paragraph: '{}'", paragraph);
             TextComposite paragraphComposite = new TextComposite(TypeTextComponent.PARAGRAPH);
-            parentComposite.addTextComponent(paragraphComposite);
+            parentComposite.add(paragraphComposite);
             logger.info("Paragraph composite created and added to parent");
             logger.info("Delegated paragraph '{}' to next parser", paragraph);
             nextParser.parseComposite(paragraph, paragraphComposite);

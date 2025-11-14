@@ -7,11 +7,6 @@ public class TextLeaf extends AbstractTextComponent {
     private static final Logger logger = LogManager.getLogger();
     private String text;
 
-    public TextLeaf(String text) {
-        logger.debug("Initializing TextLeaf with symbol: {}", text);
-        this.text = text;
-    }
-
     public TextLeaf(String text, TypeTextComponent type) {
         logger.debug("Creating TextLeaf. Type: {}, Text: '{}', Text length: {}",
                 type, text, text.length());

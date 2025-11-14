@@ -7,7 +7,6 @@ import com.innowise.texttask.service.SwapFirstLastLexemeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TextSwapFirstLastLexemeService implements SwapFirstLastLexemeService {
@@ -23,16 +22,16 @@ public class TextSwapFirstLastLexemeService implements SwapFirstLastLexemeServic
             return swapLexemesInSentence(textComposite);
         }
 
-        for (AbstractTextComponent component : textComposite.getTextComponent()) {
+        for (AbstractTextComponent component : textComposite.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.SENTENCE) {
-                    result.addTextComponent(swapLexemesInSentence(composite));
+                    result.add(swapLexemesInSentence(composite));
                 } else {
-                    result.addTextComponent(swapFirstLastLexemeInSentences(composite));
+                    result.add(swapFirstLastLexemeInSentences(composite));
                 }
             } else {
-                result.addTextComponent(component);
+                result.add(component);
             }
         }
         
@@ -43,7 +42,7 @@ public class TextSwapFirstLastLexemeService implements SwapFirstLastLexemeServic
     private TextComposite swapLexemesInSentence(TextComposite sentence) {
         logger.debug("Swapping lexemes in sentence");
         
-        List<AbstractTextComponent> components = sentence.getTextComponent();
+        List<AbstractTextComponent> components = sentence.getChildren();
         
         int firstLexemeIndex = -1;
         int lastLexemeIndex = -1;
@@ -73,19 +72,19 @@ public class TextSwapFirstLastLexemeService implements SwapFirstLastLexemeServic
             
             if (i == firstLexemeIndex) {
                 TextComposite lastLexeme = (TextComposite) components.get(lastLexemeIndex);
-                result.addTextComponent(lastLexeme);
+                result.add(lastLexeme);
             } else if (i == lastLexemeIndex) {
                 TextComposite firstLexeme = (TextComposite) components.get(firstLexemeIndex);
-                result.addTextComponent(firstLexeme);
+                result.add(firstLexeme);
             } else if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() != TypeTextComponent.LEXEME) {
-                    result.addTextComponent(swapFirstLastLexemeInSentences(composite));
+                    result.add(swapFirstLastLexemeInSentences(composite));
                 } else {
-                    result.addTextComponent(component);
+                    result.add(component);
                 }
             } else {
-                result.addTextComponent(component);
+                result.add(component);
             }
         }
         

@@ -73,7 +73,7 @@ class TextSwapFirstLastLexemeServiceTest {
 
         assertAll(
             () -> assertNotNull(result),
-            () -> assertEquals(0, result.getTextComponent().size())
+            () -> assertEquals(0, result.getChildren().size())
         );
     }
 
@@ -108,7 +108,7 @@ class TextSwapFirstLastLexemeServiceTest {
     private TextComposite createTextWithSentences(TextComposite... sentences) {
         TextComposite text = new TextComposite(TypeTextComponent.PARAGRAPH);
         for (TextComposite sentence : sentences) {
-            text.addTextComponent(sentence);
+            text.add(sentence);
         }
         return text;
     }
@@ -120,8 +120,8 @@ class TextSwapFirstLastLexemeServiceTest {
         for (String word : words) {
             TextComposite lexeme = new TextComposite(TypeTextComponent.LEXEME);
             TextComposite wordComposite = createWord(word);
-            lexeme.addTextComponent(wordComposite);
-            sentence.addTextComponent(lexeme);
+            lexeme.add(wordComposite);
+            sentence.add(lexeme);
         }
         
         return sentence;
@@ -131,14 +131,14 @@ class TextSwapFirstLastLexemeServiceTest {
         TextComposite wordComposite = new TextComposite(TypeTextComponent.WORD);
         for (char c : word.toCharArray()) {
             TextLeaf symbol = new TextLeaf(String.valueOf(c), TypeTextComponent.SYMBOL);
-            wordComposite.addTextComponent(symbol);
+            wordComposite.add(symbol);
         }
         return wordComposite;
     }
 
     private int countLexemes(TextComposite sentence) {
         int count = 0;
-        for (com.innowise.texttask.component.AbstractTextComponent component : sentence.getTextComponent()) {
+        for (com.innowise.texttask.component.AbstractTextComponent component : sentence.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.LEXEME) {
@@ -153,7 +153,7 @@ class TextSwapFirstLastLexemeServiceTest {
 
     private int countSentences(TextComposite text) {
         int count = 0;
-        for (com.innowise.texttask.component.AbstractTextComponent component : text.getTextComponent()) {
+        for (com.innowise.texttask.component.AbstractTextComponent component : text.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.SENTENCE) {

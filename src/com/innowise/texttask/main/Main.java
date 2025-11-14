@@ -84,7 +84,7 @@ public class Main {
 
     private static int countLexemes(TextComposite sentence) {
         int count = 0;
-        for (com.innowise.texttask.component.AbstractTextComponent component : sentence.getTextComponent()) {
+        for (com.innowise.texttask.component.AbstractTextComponent component : sentence.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.LEXEME) {

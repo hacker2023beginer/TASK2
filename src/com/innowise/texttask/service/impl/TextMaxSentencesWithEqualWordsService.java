@@ -49,7 +49,7 @@ public class TextMaxSentencesWithEqualWordsService implements MaxSentencesWithEq
             return sentences;
         }
 
-        for (AbstractTextComponent component : textComposite.getTextComponent()) {
+        for (AbstractTextComponent component : textComposite.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.SENTENCE) {
@@ -66,7 +66,7 @@ public class TextMaxSentencesWithEqualWordsService implements MaxSentencesWithEq
     private Set<String> extractWords(TextComposite sentence) {
         Set<String> words = new HashSet<>();
         
-        for (AbstractTextComponent component : sentence.getTextComponent()) {
+        for (AbstractTextComponent component : sentence.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.LEXEME) {
@@ -88,7 +88,7 @@ public class TextMaxSentencesWithEqualWordsService implements MaxSentencesWithEq
     private Set<String> extractWordsFromLexeme(TextComposite lexeme) {
         Set<String> words = new HashSet<>();
         
-        for (AbstractTextComponent component : lexeme.getTextComponent()) {
+        for (AbstractTextComponent component : lexeme.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.WORD) {
@@ -108,7 +108,7 @@ public class TextMaxSentencesWithEqualWordsService implements MaxSentencesWithEq
     private String extractWordText(TextComposite word) {
         StringBuilder wordText = new StringBuilder();
         
-        for (AbstractTextComponent component : word.getTextComponent()) {
+        for (AbstractTextComponent component : word.getChildren()) {
             if (component instanceof TextComposite) {
                 wordText.append(extractWordText((TextComposite) component));
             } else if (component instanceof TextLeaf) {

@@ -16,7 +16,7 @@ public class SymbolParser extends BaseParser{
             logger.debug("Get symbol: '{}'", String.valueOf(symbol));
             TextLeaf symbolLeaf = new TextLeaf(String.valueOf(symbol), TypeTextComponent.SYMBOL);
             logger.info("Created symbol leaf");
-            parentComposite.addTextComponent(symbolLeaf);
+            parentComposite.add(symbolLeaf);
             logger.info("Added symbol leaf to parent composite");
         }
     }

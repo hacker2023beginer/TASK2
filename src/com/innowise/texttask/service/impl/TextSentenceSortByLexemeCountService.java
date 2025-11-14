@@ -35,7 +35,7 @@ public class TextSentenceSortByLexemeCountService implements SentenceSortByLexem
             return sentences;
         }
 
-        for (AbstractTextComponent component : textComposite.getTextComponent()) {
+        for (AbstractTextComponent component : textComposite.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.SENTENCE) {
@@ -52,7 +52,7 @@ public class TextSentenceSortByLexemeCountService implements SentenceSortByLexem
     private int countLexemes(TextComposite sentence) {
         int count = 0;
         
-        for (AbstractTextComponent component : sentence.getTextComponent()) {
+        for (AbstractTextComponent component : sentence.getChildren()) {
             if (component instanceof TextComposite) {
                 TextComposite composite = (TextComposite) component;
                 if (composite.getTypeComponent() == TypeTextComponent.LEXEME) {

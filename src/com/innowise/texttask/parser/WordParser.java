@@ -22,7 +22,7 @@ public class WordParser extends BaseParser {
         for (String word : words) {
             logger.debug("Processing word: '{}'", word);
             TextComposite wordComposite = new TextComposite(TypeTextComponent.WORD);
-            parentComposite.addTextComponent(wordComposite);
+            parentComposite.add(wordComposite);
             logger.info("Word composite created and added to parent");
             logger.info("Delegated word '{}' to next parser", word);
             nextParser.parseComposite(word, wordComposite);
