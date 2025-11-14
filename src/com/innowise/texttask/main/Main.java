@@ -12,14 +12,17 @@ import com.innowise.texttask.service.SwapFirstLastLexemeService;
 import com.innowise.texttask.service.impl.TextMaxSentencesWithEqualWordsService;
 import com.innowise.texttask.service.impl.TextSentenceSortByLexemeCountService;
 import com.innowise.texttask.service.impl.TextSwapFirstLastLexemeService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
 public class Main {
+    private static final Logger logger = LogManager.getLogger();
     public static void main(String[] args) {
-        System.out.println("=== Text Processing Application ===\n");
+        logger.info("Start main");
 
         try {
             Path filePath = Paths.get("data/text.txt");
@@ -31,10 +34,8 @@ public class Main {
                 textBuilder.append(line).append("\n");
             }
             String text = textBuilder.toString().trim();
-            
-            System.out.println("Original text:");
-            System.out.println(text);
-            System.out.println("\n" + repeatString("=", 80) + "\n");
+
+            logger.info("Original text: {}", text);
 
             SymbolParser symbolParser = new SymbolParser();
             WordParser wordParser = new WordParser(symbolParser);
@@ -44,41 +45,32 @@ public class Main {
 
             TextComposite textComposite = new TextComposite(TypeTextComponent.PARAGRAPH);
             paragraphParser.parseComposite(text, textComposite);
+            logger.info("Text parsed successfully");
 
-            System.out.println("Text parsed successfully!\n");
-            System.out.println(repeatString("=", 80) + "\n");
-
-            System.out.println("1. Finding maximum number of sentences with equal words:");
             MaxSentencesWithEqualWordsService maxSentencesService = new TextMaxSentencesWithEqualWordsService();
             int maxSentences = maxSentencesService.findMaxSentencesWithEqualWords(textComposite);
-            System.out.println("   Result: " + maxSentences + " sentences contain the same word");
-            System.out.println();
+            logger.info("Finding maximum number of sentences with equal words: {}", maxSentences);
 
-            System.out.println("2. Sorting sentences by lexeme count (ascending):");
+            logger.info("Sorting sentences by lexeme count (ascending)");
             SentenceSortByLexemeCountService sortService = new TextSentenceSortByLexemeCountService();
             List<TextComposite> sortedSentences = sortService.sortSentencesByLexemeCount(textComposite);
-            System.out.println("   Total sentences: " + sortedSentences.size());
+            logger.info("   Total sentences: {}", sortedSentences.size());
+
             for (int i = 0; i < sortedSentences.size(); i++) {
                 TextComposite sentence = sortedSentences.get(i);
                 int lexemeCount = countLexemes(sentence);
-                System.out.println("   Sentence " + (i + 1) + " (" + lexemeCount + " lexemes): " + 
-                                 sentence.toString().trim());
+                logger.info("   Sentence {} ({} lexemes): {}",
+                        i + 1, lexemeCount, sentence.toString().trim());
             }
-            System.out.println();
 
-            System.out.println("3. Swapping first and last lexemes in each sentence:");
+            logger.info("Swapping first and last lexemes in each sentence");
             SwapFirstLastLexemeService swapService = new TextSwapFirstLastLexemeService();
             TextComposite swappedText = swapService.swapFirstLastLexemeInSentences(textComposite);
-            System.out.println("   Modified text:");
-            System.out.println(swappedText.toString());
-            System.out.println();
-
-            System.out.println(repeatString("=", 80));
-            System.out.println("All operations completed successfully!");
+            logger.info("Modified text: {}", swappedText);
+            logger.info("All operations completed successfully!");
 
         } catch (CustomTextException e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
+            logger.fatal("Error: {}", e.getMessage());
         }
     }
 
@@ -95,14 +87,6 @@ public class Main {
             }
         }
         return count;
-    }
-
-    private static String repeatString(String str, int count) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < count; i++) {
-            sb.append(str);
-        }
-        return sb.toString();
     }
 }
 
